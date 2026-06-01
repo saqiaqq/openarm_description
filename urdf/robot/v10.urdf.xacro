@@ -49,6 +49,11 @@
 
   <xacro:arg name="can_fd" default="true" />
 
+  <xacro:arg name="gravity_compensation" default="false" />
+  <xacro:arg name="gravity_urdf_path" default="/tmp/openarm_bimanual_hw.urdf" />
+  <xacro:arg name="gravity_root_link" default="openarm_body_link0" />
+  <xacro:arg name="gravity_scale" default="1.0" />
+
   <xacro:openarm_robot
   arm_type="v10"
   body_type="v10"
@@ -82,6 +87,10 @@
   right_arm_base_rpy="$(arg right_arm_base_rpy)"
   left_arm_base_rpy="$(arg left_arm_base_rpy)"
   can_fd="$(arg can_fd)"
+  gravity_compensation="$(arg gravity_compensation)"
+  gravity_urdf_path="$(arg gravity_urdf_path)"
+  gravity_root_link="$(arg gravity_root_link)"
+  gravity_scale="$(arg gravity_scale)"
   />
 
 </robot>

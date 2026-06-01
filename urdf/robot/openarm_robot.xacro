@@ -36,6 +36,10 @@
             left_arm_prefix:='left_'
             right_arm_prefix:='right_'
             can_fd:='true'
+            gravity_compensation:=false
+            gravity_urdf_path:=/tmp/openarm_bimanual_hw.urdf
+            gravity_root_link:=openarm_body_link0
+            gravity_scale:=1.0
             "
             >
 
@@ -108,7 +112,11 @@
             fake_sensor_commands="${fake_sensor_commands}"
             left_arm_prefix="${left_arm_prefix}"
             right_arm_prefix="${right_arm_prefix}"
-            hand="${hand}"/>
+            hand="${hand}"
+            gravity_compensation="${gravity_compensation}"
+            gravity_urdf_path="${gravity_urdf_path}"
+            gravity_root_link="${gravity_root_link}"
+            gravity_scale="${gravity_scale}"/>
         </xacro:if>
 
         <xacro:if value="$(eval hand and ee_type == 'openarm_hand')">

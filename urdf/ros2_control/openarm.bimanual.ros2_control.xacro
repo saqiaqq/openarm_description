@@ -10,7 +10,11 @@
              hand:=^|false
              left_arm_prefix:=^|left_
              right_arm_prefix:=^|right_
-             can_fd:=^|true">
+             can_fd:=^|true
+             gravity_compensation:=^|false
+             gravity_urdf_path:=^|/tmp/openarm_bimanual_hw.urdf
+             gravity_root_link:=^|openarm_body_link0
+             gravity_scale:=^|1.0">
 
     <!-- Left Arm Hardware Interface -->
     <ros2_control name="openarm_left_hardware_interface" type="system">
@@ -27,6 +31,13 @@
             <param name="arm_prefix">${left_arm_prefix}</param>
             <param name="hand">${hand}</param>
             <param name="can_fd">${can_fd}</param>
+            <xacro:if value="${gravity_compensation}">
+              <param name="gravity_compensation">true</param>
+              <param name="gravity_urdf_path">${gravity_urdf_path}</param>
+              <param name="gravity_root_link">${gravity_root_link}</param>
+              <param name="gravity_tip_link">openarm_${left_arm_prefix}hand</param>
+              <param name="gravity_scale">${gravity_scale}</param>
+            </xacro:if>
           </xacro:unless>
         </hardware>
 
@@ -100,6 +111,13 @@
             <param name="arm_prefix">${right_arm_prefix}</param>
             <param name="hand">${hand}</param>
             <param name="can_fd">${can_fd}</param>
+            <xacro:if value="${gravity_compensation}">
+              <param name="gravity_compensation">true</param>
+              <param name="gravity_urdf_path">${gravity_urdf_path}</param>
+              <param name="gravity_root_link">${gravity_root_link}</param>
+              <param name="gravity_tip_link">openarm_${right_arm_prefix}hand</param>
+              <param name="gravity_scale">${gravity_scale}</param>
+            </xacro:if>
           </xacro:unless>
         </hardware>
 
